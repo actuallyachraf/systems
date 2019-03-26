@@ -29,8 +29,7 @@ int main() {
 
     printf("4> wait and reply");
     while(1) {
-    
-        memset(line, 0, BUFLEN);
+	memset(line, 0, BUFLEN);
         printf("UDP Server : waiting ...\n");
         // recvfrom sock -> push data into line -> populate client struct
         rlen = recvfrom(sock,line,BUFLEN,0,(struct sockaddr*)&client,&clen);
