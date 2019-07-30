@@ -10,7 +10,7 @@ package main
 import (
 	"bufio"
 	"encoding/json"
-	"log"
+	"fmt"
 	"os"
 )
 
@@ -20,10 +20,17 @@ type Message struct {
 
 func main() {
 	// TODO: Create a new bufio.Scanner reading from the standard input.
+	reader := bufio.NewScanner(os.Stdin)
 	// TODO: Create a new json.Encoder writing into the standard output.
-	for /* TODO: Iterate over every line in the scanner */ {
+	jsoner := json.NewEncoder(os.Stdout)
+	for reader.Scan() {
 		// TODO: Create a new message with the read text.
+		msg := Message{Body: reader.Text()}
+		err := jsoner.Encode(msg)
 		// TODO: Encode the message, and check for errors!
+		if err != nil {
+			fmt.Println("failed to encoder to json :", err)
+		}
 	}
 	// TODO: Check for a scan error.
 }
