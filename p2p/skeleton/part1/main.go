@@ -24,6 +24,9 @@ func main() {
 	// TODO: Create a new json.Encoder writing into the standard output.
 	jsoner := json.NewEncoder(os.Stdout)
 	for reader.Scan() {
+		if reader.Text() == "close" {
+			break
+		}
 		// TODO: Create a new message with the read text.
 		msg := Message{Body: reader.Text()}
 		err := jsoner.Encode(msg)
